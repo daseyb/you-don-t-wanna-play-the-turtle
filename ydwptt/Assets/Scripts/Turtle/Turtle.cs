@@ -15,6 +15,8 @@ public class Turtle : MonoBehaviour {
     private const float JoustDecay = 0.1f;
     private const float Gravity = 9.81f;
 
+    private const float FloorY = 0.9f;
+
     private Vector2 m_Velocity = new Vector2();
 
     public GameObject m_Joust = null;
@@ -30,25 +32,22 @@ public class Turtle : MonoBehaviour {
         //MOVEMENT
         if (Input.GetKeyDown(KeyCode.L))
         {
-            if (this.m_Velocity.magnitude < TurtleMaxSpeed)
+            if (this.m_Velocity.x > 0.0f || this.m_Velocity.magnitude < TurtleMaxSpeed)
             {
                 this.m_Velocity += -Vector2.right * TurtleSpeedAdd;
-
-                //this.m_JoustAngle += JoustAdd;
-
-                this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0,0,-90.0f)), JoustAdd);
             }
+
+            this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0, 0, -45.0f)), JoustAdd);
         }
 
         //JOUST DECAY
-
         this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0, 0, 0.0f)), JoustDecay);
 
         //GROUND COLLISION
-        if (this.transform.position.y <= 0.0f)
+        if (this.transform.position.y <= FloorY)
         {
             Vector3 trans = this.transform.position;
-            trans.y = 0.0f;
+            trans.y = FloorY;
             this.transform.position = trans;
             this.m_Velocity = new Vector2(m_Velocity.x, m_Velocity.y * -BounceFactor);
 
