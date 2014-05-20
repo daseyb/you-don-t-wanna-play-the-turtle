@@ -6,4 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestDario.unity
+    path: Assets/Scenes/Menu.unity
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+  - enabled: 1
+    path: Assets/Scenes/BirdWin.unity
+  - enabled: 1
+    path: Assets/Scenes/TurtleWin.unity
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity

@@ -7,7 +7,7 @@ public class TurtleHead : MonoBehaviour {
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("BirdLance"))
         {
-            Application.LoadLevel(0);
+            Application.LoadLevel("BirdWin");
         }
     }
 }

@@ -3,16 +3,16 @@ using System.Collections;
 
 public class Turtle : MonoBehaviour {
 
-    private const float TurtleSpeedAdd = 0.05f;
-    private const float TurtleMaxSpeed = 1.0f;
-    private const float SetBackSpeed = 1.0f;
+    private const float TurtleSpeedAdd = 0.15f;
+    private const float TurtleMaxSpeed = 2.0f;
+    private const float SetBackSpeed = 1.3f;
     private const float SetBackSpeedUp = 0.8f;
     private const float BounceFactor = 0.6f;
     private const float Friction = 2.0f;
 
     private float m_JoustAngle = 0.0f;
-    private const float JoustAdd = 60.0f;
-    private const float JoustDecay = 3.0f;
+    private const float JoustAdd = 90.0f;
+    private const float JoustDecay = 5.0f;
     private const float Gravity = 9.81f;
 
     private const float FloorY = 0.9f;
@@ -76,6 +76,16 @@ public class Turtle : MonoBehaviour {
         //ASSIGNMENT
         Vector3 Vel3D = this.m_Velocity;
         this.transform.position += Vel3D * Time.deltaTime;
+
+	    if (transform.position.x > 14)
+	    {
+	        Application.LoadLevel("BirdWin");
+	    }
+
+	    if (transform.position.x < -11)
+	    {
+            Application.LoadLevel("TurtleWin");
+	    }
 	}
 
     void OnTriggerStay2D(Collider2D other)
@@ -83,6 +93,7 @@ public class Turtle : MonoBehaviour {
         if (other.gameObject.layer == LayerMask.NameToLayer("BirdLance"))
         {
             SetBack();
+            other.GetComponent<BirdLance>().bird.vel.y = 10;
         }
     }
 

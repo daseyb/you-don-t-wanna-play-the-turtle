@@ -30,7 +30,7 @@ public class BirdController : MonoBehaviour
 
         if (transform.position.y > 15 || transform.position.y < 0)
         {
-            Application.LoadLevel(0);
+            Application.LoadLevel("TurtleWin");
         }
 
         if (transform.position.x > 10)
@@ -50,8 +50,9 @@ public class BirdController : MonoBehaviour
     IEnumerator RestartIn(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        Application.LoadLevel(0);
+        Application.LoadLevel("TurtleWin");
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TurtleLance"))
