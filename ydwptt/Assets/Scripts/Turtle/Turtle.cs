@@ -21,6 +21,11 @@ public class Turtle : MonoBehaviour {
 
     public GameObject m_Joust = null;
 
+    public void Activate()
+    {
+        enabled = true;
+    }
+
 	// Use this for initialization
 	void Start () {
 	
@@ -30,7 +35,7 @@ public class Turtle : MonoBehaviour {
 	void Update () {
 
         //MOVEMENT
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(GameControls.TURTLE_KEY))
         {
             if (this.m_Velocity.x > 0.0f || this.m_Velocity.magnitude < TurtleMaxSpeed)
             {
