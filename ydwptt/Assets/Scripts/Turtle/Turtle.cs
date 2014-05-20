@@ -74,6 +74,14 @@ public class Turtle : MonoBehaviour {
         this.transform.position += Vel3D * Time.deltaTime;
 	}
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("BirdLance"))
+        {
+            SetBack();
+        }
+    }
+
     public void SetBack()
     {
         m_Velocity += Vector2.right * SetBackSpeed;

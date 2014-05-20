@@ -9,8 +9,15 @@ public class BirdController : MonoBehaviour
     public Vector2 vel;
     private Vector2 acc;
 
+    private bool isDead = false;
+
     void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.S))
         {
             vel.y = TapImpulse;
@@ -27,8 +34,33 @@ public class BirdController : MonoBehaviour
         }
     }
 
+    void Kill()
+    {
+        isDead = true;
+        rigidbody2D.velocity = -vel + Vector2.up;
+        rigidbody2D.gravityScale = 1;
+        StartCoroutine(RestartIn(3));
+    }
+
+    IEnumerator RestartIn(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Application.LoadLevel(0);
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("TurtleLance"))
+        {
+            Kill();
+        }
+    }
+
 	void FixedUpdate ()
 	{
+	    if (isDead)
+	    {
+	        return;
+	    }
 	    vel -= Vector2.up * 30 * Time.fixedDeltaTime;
 	    vel.x = XVelocity;
         transform.Translate(vel * Time.fixedDeltaTime, Space.World);
