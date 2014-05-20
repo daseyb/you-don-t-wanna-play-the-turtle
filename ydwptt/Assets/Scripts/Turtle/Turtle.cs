@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Turtle : MonoBehaviour {
 
-    private const float TurtleSpeedAdd = 0.2f;
+    private const float TurtleSpeedAdd = 0.05f;
     private const float TurtleMaxSpeed = 1.0f;
     private const float SetBackSpeed = 1.0f;
     private const float SetBackSpeedUp = 0.8f;
@@ -11,8 +11,8 @@ public class Turtle : MonoBehaviour {
     private const float Friction = 2.0f;
 
     private float m_JoustAngle = 0.0f;
-    private const float JoustAdd = 3.0f;
-    private const float JoustDecay = 0.1f;
+    private const float JoustAdd = 60.0f;
+    private const float JoustDecay = 3.0f;
     private const float Gravity = 9.81f;
 
     private const float FloorY = 0.9f;
@@ -37,11 +37,11 @@ public class Turtle : MonoBehaviour {
                 this.m_Velocity += -Vector2.right * TurtleSpeedAdd;
             }
 
-            this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0, 0, -45.0f)), JoustAdd);
+            this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0, 0, -45.0f)), JoustAdd*Time.deltaTime);
         }
 
         //JOUST DECAY
-        this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0, 0, 0.0f)), JoustDecay);
+        this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0, 0, 0.0f)), JoustDecay*Time.deltaTime);
 
         //GROUND COLLISION
         if (this.transform.position.y <= FloorY)
@@ -73,7 +73,7 @@ public class Turtle : MonoBehaviour {
         this.transform.position += Vel3D * Time.deltaTime;
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("BirdLance"))
         {
