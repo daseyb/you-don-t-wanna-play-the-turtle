@@ -8,6 +8,16 @@ public class Turtle : MonoBehaviour {
     private const float SetBackSpeed = 1.0f;
     private const float SetBackSpeedUp = 0.8f;
     private const float BounceFactor = 0.6f;
+    private const float Friction = 2.0f;
+
+    private float m_JoustAngle = 0.0f;
+    private const float JoustAdd = 3.0f;
+    private const float JoustDecay = 0.1f;
+    private const float Gravity = 9.81f;
+
+    private Vector2 m_Velocity = new Vector2();
+
+    public GameObject m_Joust = null;
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +30,19 @@ public class Turtle : MonoBehaviour {
         //MOVEMENT
         if (Input.GetKeyDown(KeyCode.L))
         {
-            if (this.rigidbody2D.velocity.magnitude < TurtleMaxSpeed)
+            if (this.m_Velocity.magnitude < TurtleMaxSpeed)
             {
-                this.rigidbody2D.velocity += -Vector2.right * TurtleSpeedAdd;
+                this.m_Velocity += -Vector2.right * TurtleSpeedAdd;
+
+                //this.m_JoustAngle += JoustAdd;
+
+                this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0,0,-90.0f)), JoustAdd);
             }
         }
+
+        //JOUST DECAY
+
+        this.m_Joust.transform.rotation = Quaternion.RotateTowards(this.m_Joust.transform.rotation, Quaternion.Euler(new Vector3(0, 0, 0.0f)), JoustDecay);
 
         //GROUND COLLISION
         if (this.transform.position.y <= 0.0f)
@@ -32,8 +50,16 @@ public class Turtle : MonoBehaviour {
             Vector3 trans = this.transform.position;
             trans.y = 0.0f;
             this.transform.position = trans;
-            Vector2 rigidVel = this.rigidbody2D.velocity;
-            this.rigidbody2D.velocity = new Vector2(rigidVel.x, rigidVel.y * BounceFactor);
+            this.m_Velocity = new Vector2(m_Velocity.x, m_Velocity.y * -BounceFactor);
+
+            //FRICTION
+            this.m_Velocity.x -= this.m_Velocity.x * Friction * Time.deltaTime;
+        }
+        else
+        {
+            ///GRAVITY
+
+            this.m_Velocity += -Vector2.up * Gravity * Time.deltaTime;
         }
 
 
@@ -42,11 +68,15 @@ public class Turtle : MonoBehaviour {
         {
             SetBack();
         }
+
+        //ASSIGNMENT
+        Vector3 Vel3D = this.m_Velocity;
+        this.transform.position += Vel3D * Time.deltaTime;
 	}
 
     public void SetBack()
     {
-        this.rigidbody2D.velocity += Vector2.right * SetBackSpeed;
-        this.rigidbody2D.velocity += Vector2.up * SetBackSpeedUp;
+        m_Velocity += Vector2.right * SetBackSpeed;
+        m_Velocity += Vector2.up * SetBackSpeedUp;
     }
 }
