@@ -12,7 +12,7 @@ TagManager:
   Builtin Layer 5: 
   Builtin Layer 6: 
   Builtin Layer 7: 
-  User Layer 8: 
+  User Layer 8: Bird
   User Layer 9: 
   User Layer 10: 
   User Layer 11: 
@@ -37,6 +37,10 @@ TagManager:
   User Layer 30: 
   User Layer 31: 
   m_SortingLayers:
+  - name: Background
+    userID: 1
+    uniqueID: 4078458057
+    locked: 0
   - name: Default
     userID: 0
     uniqueID: 0
