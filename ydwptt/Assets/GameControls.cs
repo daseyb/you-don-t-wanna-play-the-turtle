@@ -18,9 +18,4 @@ public class GameControls : MonoBehaviour {
             BIRD_KEY = KeyCode.S;
 	    }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
