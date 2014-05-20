@@ -6,13 +6,14 @@ public class BirdController : MonoBehaviour
     public float XVelocity;
     public float TapImpulse;
 
+    public Vector2 vel;
+    private Vector2 acc;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            var vel = rigidbody2D.velocity;
             vel.y = TapImpulse;
-            rigidbody2D.velocity = vel;
         }
 
         if (transform.position.y > 15 || transform.position.y < 0)
@@ -20,16 +21,16 @@ public class BirdController : MonoBehaviour
             Application.LoadLevel(0);
         }
 
-        if (transform.position.x < -10)
+        if (transform.position.x > 10)
         {
-            transform.position = new Vector2(11, transform.position.y);
+            transform.position = new Vector2(-11, transform.position.y);
         }
     }
 
 	void FixedUpdate ()
 	{
-	    var vel = rigidbody2D.velocity;
+	    vel -= Vector2.up * 30 * Time.fixedDeltaTime;
 	    vel.x = XVelocity;
-	    rigidbody2D.velocity = vel;
+        transform.Translate(vel * Time.fixedDeltaTime, Space.World);
 	}
 }
