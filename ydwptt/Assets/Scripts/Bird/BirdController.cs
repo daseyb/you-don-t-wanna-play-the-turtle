@@ -23,7 +23,7 @@ public class BirdController : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(GameControls.BIRD_KEY))
         {
             vel.y = TapImpulse;
         }

@@ -35,7 +35,7 @@ public class Turtle : MonoBehaviour {
 	void Update () {
 
         //MOVEMENT
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(GameControls.TURTLE_KEY))
         {
             if (this.m_Velocity.x > 0.0f || this.m_Velocity.magnitude < TurtleMaxSpeed)
             {
@@ -78,7 +78,7 @@ public class Turtle : MonoBehaviour {
         this.transform.position += Vel3D * Time.deltaTime;
 	}
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("BirdLance"))
         {
