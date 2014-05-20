@@ -19,6 +19,11 @@ public class Turtle : MonoBehaviour {
 
     public GameObject m_Joust = null;
 
+    public void Activate()
+    {
+        enabled = true;
+    }
+
 	// Use this for initialization
 	void Start () {
 	

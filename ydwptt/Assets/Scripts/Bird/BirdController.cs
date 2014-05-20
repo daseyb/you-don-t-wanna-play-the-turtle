@@ -11,6 +11,11 @@ public class BirdController : MonoBehaviour
 
     private bool isDead = false;
 
+    public void Activate()
+    {
+        enabled = true;
+    }
+
     void Update()
     {
         if (isDead)

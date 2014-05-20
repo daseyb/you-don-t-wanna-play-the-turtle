@@ -156,8 +156,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Size: {x: 5.27365589, y: .545528948}
-  m_Center: {x: 2.48000002, y: .0928319097}
+  m_Size: {x: 5.27365589, y: .288472027}
+  m_Center: {x: 2.47999978, y: .0748216286}
 --- !u!61 &6100004
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -167,8 +167,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Size: {x: 2.26477289, y: .681165099}
-  m_Center: {x: -.151076674, y: -.0177537519}
+  m_Size: {x: 1.82128787, y: 1.4367981}
+  m_Center: {x: .0706790462, y: -.049501922}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c14d35922d3f93d45acc185ed7fb9b5a, type: 3}
   m_Name: 
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: aadb61c339f493f4297c501ac81c632c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -269,7 +269,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: b610302cb46bc084cbce33d434e7e448, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

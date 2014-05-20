@@ -9,6 +9,10 @@ public class BirdRotator : MonoBehaviour
 
 	void Update ()
 	{
+	    if (target.vel == Vector2.zero)
+	    {
+	        return;
+	    }
 	    var dir = target.vel;
         dir.Normalize();
 	    var zRot = Quaternion.FromToRotation(Vector2.right, dir).eulerAngles.z;
